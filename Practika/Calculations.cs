@@ -12,7 +12,7 @@ namespace Practika
         // ++ sorting
         public static void sorting(int[,] a)
         {
-            if (a != null)
+            if (a == null)
             {
                 throw new ArgumentNullException(nameof(a));
             }
@@ -76,6 +76,11 @@ namespace Practika
         // ++ zeroing
         public static void zeroing(int[,] a)
         {
+            if (a == null)
+            {
+                throw new ArgumentNullException(nameof(a));
+            } 
+
             int rLng = a.GetLength(0);
             int cLng = a.GetLength(1);
             if (rLng != cLng)
