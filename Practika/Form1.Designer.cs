@@ -47,6 +47,7 @@
             this.GridInput.RowTemplate.Height = 25;
             this.GridInput.Size = new System.Drawing.Size(452, 322);
             this.GridInput.TabIndex = 0;
+            this.GridInput.Resize += new System.EventHandler(this.GridInput_Resize);
             // 
             // GridOut
             // 
@@ -57,6 +58,7 @@
             this.GridOut.RowTemplate.Height = 25;
             this.GridOut.Size = new System.Drawing.Size(452, 322);
             this.GridOut.TabIndex = 1;
+            this.GridOut.Resize += new System.EventHandler(this.GridOut_Resize);
             // 
             // buttonConvert
             // 

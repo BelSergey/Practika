@@ -7,7 +7,75 @@ namespace Practika
             InitializeComponent();
             
         }
-       
+
+        private const int _cellSize = 30;
+        private const int _headerSize = 25;
+
+        private void changeCellCount(DataGridView grid, int rowCount, int columnCount)
+        {
+            grid.RowCount = rowCount;
+            grid.ColumnCount = columnCount;
+            grid.RowHeadersVisible = true;
+            grid.RowHeadersWidth = _headerSize;
+            grid.ColumnHeadersHeight = _headerSize;
+
+            calcCellSize(rowCount, columnCount, grid.Size, out int cellSizeW, out int cellSizeH);
+
+            for (int i = 0; i < columnCount; i++)
+            {
+                var column = grid.Columns[i];
+                column.Name = $"{i}";
+                column.Width = cellSizeW;
+                column.HeaderCell.Style.BackColor = Color.Aqua;
+                column.ValueType = typeof(int);
+            }
+
+
+            for (int j = 0; j < rowCount; j++)
+            {
+                var row = grid.Rows[j];
+                row.Height = cellSizeH;
+                row.HeaderCell.Value = $"{j}";
+                row.HeaderCell.Style.BackColor = Color.Aqua;
+            }
+        }
+
+
+        private void changeCellSize(DataGridView grid)
+        {
+            int rowCount = grid.RowCount;
+            int columnCount = grid.ColumnCount;
+
+            calcCellSize(rowCount, columnCount, grid.Size, out int cellSizeW, out int cellSizeH);
+
+            for (int i = 0; i < columnCount; i++)
+            {
+                var column = grid.Columns[i];
+                column.Width = cellSizeW;
+            }
+
+            for (int j = 0; j < rowCount; j++)
+            {
+                var row = grid.Rows[j];
+                row.Height = cellSizeH;
+            }
+        }
+
+        private static void calcCellSize(int rowCount, int columnCount, Size gridSize, out int cellSizeW, out int cellSizeH)
+        {
+            cellSizeW = _cellSize;
+            cellSizeH = _cellSize;
+            double gridW = gridSize.Width - _headerSize - columnCount - 1;
+            double gridH = gridSize.Height - _headerSize - rowCount - 1;
+
+            cellSizeW = (int)(gridW / columnCount);
+            cellSizeH = (int)(gridH / rowCount);
+
+            cellSizeW = cellSizeW < _cellSize ? _cellSize : cellSizeW;
+            cellSizeH = cellSizeH < _cellSize ? _cellSize : cellSizeH;
+        }
+
+
         private void resultsToTable(DataGridView output, int[,] source)
         {
             int rLng = source.GetLength(0);
@@ -60,8 +128,20 @@ namespace Practika
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             int n= (int) this.numericUpDown1.Value;
-            this.GridInput.ColumnCount= n*2;
-            this.GridInput.RowCount= n*2 ;
+            changeCellCount(this.GridInput, n * 2);
+            changeCellCount(this.GridOut, n * 2);
         }
+
+        private void GridInput_Resize(object sender, EventArgs e)
+        {
+            changeCellSize(this.GridInput);
+        }
+
+        private void GridOut_Resize(object sender, EventArgs e)
+        {
+            changeCellSize(this.GridOut);
+        }
+
+
     }
 }
