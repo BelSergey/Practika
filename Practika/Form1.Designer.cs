@@ -53,7 +53,7 @@
             // 
             this.GridOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.GridOut.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridOut.Location = new System.Drawing.Point(602, 108);
+            this.GridOut.Location = new System.Drawing.Point(608, 108);
             this.GridOut.Name = "GridOut";
             this.GridOut.RowTemplate.Height = 25;
             this.GridOut.Size = new System.Drawing.Size(452, 322);
@@ -91,7 +91,7 @@
             // Form1
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1095, 476);
+            this.ClientSize = new System.Drawing.Size(1101, 513);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.buttonConvert);
             this.Controls.Add(this.GridOut);
