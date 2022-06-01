@@ -128,8 +128,8 @@ namespace Practika
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             int n= (int) this.numericUpDown1.Value;
-            changeCellCount(this.GridInput, n * 2);
-            changeCellCount(this.GridOut, n * 2);
+            changeCellCount(this.GridInput, n * 2, n*2);
+            changeCellCount(this.GridOut, n * 2, n*2);
         }
 
         private void GridInput_Resize(object sender, EventArgs e)
@@ -142,6 +142,34 @@ namespace Practika
             changeCellSize(this.GridOut);
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            foreach (var cell in from DataGridViewRow row in GridInput.Rows from DataGridViewCell cell in row.Cells select cell)
+            {
+                cell.Value = string.Empty;
+            }
+            foreach (var cell in from DataGridViewRow row in GridOut.Rows from DataGridViewCell cell in row.Cells select cell)
+            {
+                cell.Value = string.Empty;
+            }
+        }
+
+        private void ÓœÓ„‡ÏÏÂToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.ShowDialog(); 
+        }
+
+        private void ÓÔËÒ‡ÌËÂ ÌÓÔÓÍToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form3 form3 = new Form3();
+            form3.ShowDialog();
+        }
     }
-}
+    }
